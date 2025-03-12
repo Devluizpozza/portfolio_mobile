@@ -25,11 +25,11 @@ O maior desafio deste projeto foi utilizar tecnologias com as quais eu ainda nã
 
 1. **Clone o repositório:**
    ```bash
-   git clone https://github.com/seu-usuario/seu-repositorio.git
+   git clone https://github.com/Devluizpozza/portfolio_mobile/
    ```
 2. **Acesse o diretório do projeto:**
    ```bash
-   cd seu-repositorio
+   cd pasta-clonada
    ```
 3. **Instale as dependências:**
    ```bash
@@ -71,11 +71,11 @@ The biggest challenge in this project was using technologies I had never worked 
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/your-username/your-repository.git
+   git clone https://github.com/Devluizpozza/portfolio_mobile/
    ```
 2. **Navigate to the project directory:**
    ```bash
-   cd your-repository
+   cd folder-cloned
    ```
 3. **Install dependencies:**
    ```bash
