@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:get/get_rx/src/rx_types/rx_types.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import 'package:portfolio_app/app/models/github_owner.dart';
@@ -67,29 +66,16 @@ class GitHubController extends GetxController {
     super.onInit();
   }
 
-  void fetchGitHubRepos(String username) async {
+  Future<void> fetchUserData(String? username) async {
     try {
-      userRepos = await gitHubService.fetchUserRepos(username);
-    } catch (e) {
-      print(e.toString);
-    } finally {}
-  }
-
-  Future<void> fetchUserData(String username) async {
-    try {
-      gitHubUser = await gitHubService.fetchUserProfile(username);
-      userRepos = await gitHubService.fetchUserRepos(username);
-    } catch (e) {
-      print(e.toString());
-    } finally {}
-  }
-
-  Future<void> onSearchUserData(BuildContext context) async {
-    try {
+      if (username != null) {
+        gitHubUser = await gitHubService.fetchUserProfile(username);
+        userRepos = await gitHubService.fetchUserRepos(username);
+      }
       gitHubUser = await gitHubService.fetchUserProfile(searchUser);
       userRepos = await gitHubService.fetchUserRepos(searchUser);
     } catch (e) {
       print(e.toString());
-    }
+    } finally {}
   }
 }

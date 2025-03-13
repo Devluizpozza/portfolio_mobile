@@ -1,5 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
 import 'package:portfolio_app/app/components/title_subtitle_ui.dart';
@@ -20,9 +22,18 @@ class GitHubView extends GetView<GitHubController> {
         child: SafeArea(
           child: Scaffold(
             appBar: AppBar(
+              automaticallyImplyLeading: false,
+              leading: IconButton(
+                icon: Icon(Icons.arrow_back, size: 26),
+                onPressed: () {
+                  controller.searchUser = '';
+                  controller.userRepos = [];
+                  Get.back();
+                },
+              ),
               actionsPadding: EdgeInsets.symmetric(horizontal: 10),
               backgroundColor: Colors.amber,
-              title: Center(child: Text('GitHub View')),
+              title: Center(child: Text('GitHub API')),
               elevation: 2,
               actions: [
                 IconButton(
@@ -61,7 +72,7 @@ class GitHubView extends GetView<GitHubController> {
                                     onPressed: () {
                                       controller.searchUser =
                                           textController.text;
-                                      controller.onSearchUserData(context);
+                                      controller.fetchUserData(null);
 
                                       Navigator.pop(context);
                                     },
