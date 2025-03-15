@@ -1,6 +1,5 @@
 import 'package:get/get_rx/src/rx_types/rx_types.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
-import 'package:portfolio_app/app/models/github_owner.dart';
 import 'package:portfolio_app/app/models/github_repo.dart';
 import 'package:portfolio_app/app/models/github_user.dart';
 import 'package:portfolio_app/app/models/project.dart';
@@ -9,7 +8,6 @@ import 'package:portfolio_app/app/services/github_service.dart';
 class ProjectsController extends GetxController {
   final Rx<List<Project?>> _projects = Rx<List<Project?>>([]);
   final GitHubService gitHubService = GitHubService();
-  final Rx<GitHubOwner?> _gitHubOwner = Rx<GitHubOwner?>(null);
   final Rx<List<GitHubRepo>> _userRepos = Rx<List<GitHubRepo>>([]);
   final Rx<GitHubUser?> _gitHubUser = Rx<GitHubUser?>(null);
   final Rx<bool> _isLoading = false.obs;
@@ -26,13 +24,6 @@ class ProjectsController extends GetxController {
   set userRepos(List<GitHubRepo> value) {
     _userRepos.value = value;
     _userRepos.refresh();
-  }
-
-  GitHubOwner? get gitHubOwner => _gitHubOwner.value;
-
-  set gitHubOwner(GitHubOwner? value) {
-    _gitHubOwner.value = value;
-    _gitHubOwner.refresh();
   }
 
   GitHubUser? get gitHubUser => _gitHubUser.value;

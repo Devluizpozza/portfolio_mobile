@@ -1,5 +1,6 @@
 import 'package:get/get_rx/src/rx_types/rx_types.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
+import 'package:portfolio_app/app/database/database_helper.dart';
 import 'package:portfolio_app/app/models/github_owner.dart';
 import 'package:portfolio_app/app/models/github_repo.dart';
 import 'package:portfolio_app/app/models/github_user.dart';
@@ -77,5 +78,26 @@ class GitHubController extends GetxController {
     } catch (e) {
       print(e.toString());
     } finally {}
+  }
+
+  Future<void> loadLocalData() async {
+    try {
+      gitHubUser =
+          (await DBHelper.instance.getGitHubUsers()).isNotEmpty
+              ? (await DBHelper.instance.getGitHubUsers()).first
+              : null;
+      userRepos = await DBHelper.instance.getGitHubRepos();
+    } catch (e) {
+      throw Exception("$e");
+    }
+  }
+
+  Future<void> saveLocalData() async {
+    try {
+      await DBHelper.instance.insertGitHubUser(gitHubUser!);
+      await DBHelper.instance.insertGitHubRepos(userRepos);
+    } catch (e) {
+      throw Exception("$e");
+    }
   }
 }
